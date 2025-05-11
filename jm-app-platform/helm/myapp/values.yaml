@@ -1,0 +1,5 @@
+backend:
+  image: my-dockerhub-user/my-backend:latest
+
+frontend:
+  image: my-dockerhub-user/my-frontend:latest
