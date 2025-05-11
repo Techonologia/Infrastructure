@@ -146,7 +146,7 @@ The `.github/workflows/deploy.yml` workflow automates the following:
 
 | Name        | Role        | Contact                   |
 |-------------|-------------|---------------------------|
-| Your Name   | DevOps Lead | your.email@example.com    |
+|   Lakal     | DevOps      | your.email@example.com    |
 
 ---
 
