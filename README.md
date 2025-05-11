@@ -18,40 +18,35 @@ This repository serves as the **single source of truth** for all infrastructure-
 ---
 
 ## 📂 Repository Structure
-
 infrastructure/
-├── terraform/ # Infrastructure provisioning (VPC, EC2, IAM, etc.)
-│ ├── main.tf
-│ ├── variables.tf
-│ ├── outputs.tf
-│ └── backend.tf # Remote state (S3 + DynamoDB recommended)
+├── terraform/                 # Infrastructure provisioning (VPC, EC2, IAM, etc.)
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── backend.tf             # Remote state (S3 + DynamoDB recommended)
 │
-├── k8s/ # Kubernetes manifests (raw YAML)
-│ ├── app-deployment.yaml
-│ ├── app-service.yaml
-│ └── ingress.yaml
+├── k8s/                       # Kubernetes manifests (raw YAML)
+│   ├── app-deployment.yaml
+│   ├── app-service.yaml
+│   └── ingress.yaml
 │
-├── helm/ # Helm chart for deploying app to Kubernetes
-│ └── job-market-app/
-│ ├── Chart.yaml
-│ ├── values.yaml
-│ └── templates/
-│ ├── deployment.yaml
-│ ├── service.yaml
-│ └── ingress.yaml
+├── helm/                      # Helm chart for deploying app to Kubernetes
+│   └── job-market-app/
+│       ├── Chart.yaml
+│       ├── values.yaml
+│       └── templates/
+│           ├── deployment.yaml
+│           ├── service.yaml
+│           └── ingress.yaml
 │
-├── docker/ # Dockerfile(s) for building application container images
-│ └── Dockerfile
+├── docker/                    # Dockerfile(s) for building application container images
+│   └── Dockerfile
 │
 ├── .github/
-│ └── workflows/ # GitHub Actions CI/CD pipeline definitions
-│ └── deploy.yml
+│   └── workflows/             # GitHub Actions CI/CD pipeline definitions
+│       └── deploy.yml
 │
-└── README.md # Project documentation (you are here)
-
-yaml
-Copy
-Edit
+└── README.md                  # Project documentation (you are here)
 
 ---
 
