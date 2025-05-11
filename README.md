@@ -18,6 +18,8 @@ This repository serves as the **single source of truth** for all infrastructure-
 ---
 
 ## 📂 Repository Structure
+
+```text
 infrastructure/
 ├── terraform/                 # Infrastructure provisioning (VPC, EC2, IAM, etc.)
 │   ├── main.tf
@@ -47,6 +49,7 @@ infrastructure/
 │       └── deploy.yml
 │
 └── README.md                  # Project documentation (you are here)
+```
 
 ---
 
@@ -70,79 +73,89 @@ Ensure AWS CLI is configured and Terraform backend (e.g., S3) is set up:
 cd terraform
 terraform init
 terraform apply
-2. Build & Push Docker Image
-Handled automatically by GitHub Actions, or manually:
-
-bash
-Copy
-Edit
-docker build -t <your-repo>/job-market-app:latest .
-docker push <your-repo>/job-market-app:latest
-3. Deploy to Kubernetes
-Option A: Using Raw YAML
-bash
-Copy
-Edit
-kubectl apply -f k8s/
-Option B: Using Helm
-bash
-Copy
-Edit
-helm install job-market ./helm/job-market-app
-Helm values can be customized in helm/job-market-app/values.yaml.
-
-🔁 CI/CD Pipeline
-The .github/workflows/deploy.yml workflow automates the following:
-
-Checkout code on push
-
-Build Docker image
-
-Push image to container registry
-
-Apply Kubernetes manifests using kubectl or helm
-
-GitHub Secrets Used
-AWS_ACCESS_KEY_ID
-
-AWS_SECRET_ACCESS_KEY
-
-KUBECONFIG or cluster access tokens
-
-DOCKER_USERNAME, DOCKER_PASSWORD (if using Docker Hub or similar)
-
-🔐 Security & Best Practices
-Terraform state is stored remotely (e.g., S3 + DynamoDB) to enable team collaboration
-
-All secrets and sensitive credentials are stored in GitHub Secrets
-
-IAM roles follow least privilege principle
-
-Kubernetes access is RBAC-controlled
-
-Regular scanning of Docker images and dependencies recommended
-
-📌 Notes
-This repo handles only infrastructure and deployment.
-
-The application source code is located in a separate repository.
-
-For local development, consider using minikube or kind.
-
-🧑‍💼 Maintainers
-Name	Role	Contact
-[Your Name]	DevOps Lead	[your.email@example.com]
-
-📝 License
-This project is licensed under the MIT License.
-
-🙌 Contributions
-Contributions and improvements are welcome. Please open an issue or submit a PR.
-
-yaml
-Copy
-Edit
+```
 
 ---
 
-Would you like me to include a basic system architecture diagram as well  (e.g., showing Terraform ➝ AWS ➝ Kubernetes ➝ App)?
+### 2. Build & Push Docker Image
+
+Handled automatically by GitHub Actions, or manually:
+
+```bash
+docker build -t <your-repo>/job-market-app:latest .
+docker push <your-repo>/job-market-app:latest
+```
+
+---
+
+### 3. Deploy to Kubernetes
+
+#### Option A: Using Raw YAML
+
+```bash
+kubectl apply -f k8s/
+```
+
+#### Option B: Using Helm
+
+```bash
+helm install job-market ./helm/job-market-app
+```
+
+> ℹ️ Helm values can be customized in `helm/job-market-app/values.yaml`.
+
+---
+
+## 🔁 CI/CD Pipeline
+
+The `.github/workflows/deploy.yml` workflow automates the following:
+
+- Checkout code on push
+- Build Docker image
+- Push image to container registry
+- Apply Kubernetes manifests using `kubectl` or `helm`
+
+### GitHub Secrets Used
+
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `KUBECONFIG` or cluster access tokens
+- `DOCKER_USERNAME`, `DOCKER_PASSWORD` (if using Docker Hub or similar)
+
+---
+
+## 🔐 Security & Best Practices
+
+- Terraform state is stored remotely (e.g., S3 + DynamoDB) to enable team collaboration
+- All secrets and sensitive credentials are stored in **GitHub Secrets**
+- IAM roles follow the **principle of least privilege**
+- Kubernetes access is **RBAC-controlled**
+- Regular scanning of Docker images and dependencies is recommended
+
+---
+
+## 📌 Notes
+
+- This repository manages **infrastructure and deployment only**
+- Application source code is maintained in a **separate repository**
+- For local development or testing, consider using [minikube](https://minikube.sigs.k8s.io/) or [kind](https://kind.sigs.k8s.io/)
+
+---
+
+## 🧑‍💼 Maintainers
+
+| Name        | Role        | Contact                   |
+|-------------|-------------|---------------------------|
+| Your Name   | DevOps Lead | your.email@example.com    |
+
+---
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🙌 Contributions
+
+Contributions and improvements are welcome. Please open an issue or submit a pull request.
